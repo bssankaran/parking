@@ -25,4 +25,12 @@ public class ParkingLot {
     public boolean isParked(String number) {
         return vehicles.contains(number);
     }
+
+    public void leave(String number) {
+        if(!vehicles.contains(number)){
+            throw new IllegalStateException("Vehicle does not exist.");
+        }
+        vehicles.remove(number);
+        currentAvailable++;
+    }
 }

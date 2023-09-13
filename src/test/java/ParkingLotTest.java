@@ -34,7 +34,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_true_if_my_car_is_available_in_parking_lot(){
+    void should_return_true_when_my_car_is_available_in_parking_lot(){
         ParkingLot parkingLot = new ParkingLot(1);
         parkingLot.park(()->"1");
 
@@ -44,11 +44,30 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_false_if_my_car_is_not_available_in_parking_lot(){
+    void should_return_false_when_my_car_is_not_available_in_parking_lot(){
         ParkingLot parkingLot = new ParkingLot(1);
 
         boolean isParked = parkingLot.isParked("1");
 
         assertFalse(isParked);
+    }
+
+    @Test
+    void should_return_true_when_car_successfully_unparked(){
+        ParkingLot parkingLot = new ParkingLot(1);
+        parkingLot.park(()->"1");
+
+        parkingLot.leave("1");
+
+        assertTrue(parkingLot.park(()-> "2"));
+    }
+
+    @Test
+    void should_throw_exception_when_trying_to_unpark_non_existing_car(){
+        ParkingLot parkingLot = new ParkingLot(1);
+
+        assertThrows(IllegalStateException.class, ()-> parkingLot.leave("1"));
+
+
     }
 }
