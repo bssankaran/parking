@@ -6,31 +6,30 @@ import java.util.Set;
 public class ParkingLot {
     private final int totalSpace;
     private int currentAvailable;
-    private final Set<String> vehicles = new HashSet<>();
+    private final Set<Parkable> vehicles = new HashSet<>();
 
     public ParkingLot(int totalSpace) {
         this.totalSpace = totalSpace;
         currentAvailable = totalSpace;
     }
 
-    public boolean park(Parkable parkable) {
+    public void park(Parkable parkable) {
         if (currentAvailable == 0) {
-            return false;
+            return;
         }
-        vehicles.add(parkable.registrationNumber());
+        vehicles.add(parkable);
         currentAvailable--;
-        return true;
     }
 
-    public boolean isParked(String number) {
-        return vehicles.contains(number);
+    public boolean isParked(Parkable parkable) {
+        return vehicles.contains(parkable);
     }
 
-    public void leave(String number) {
-        if(!vehicles.contains(number)){
+    public void leave(Parkable parkable) {
+        if (!vehicles.contains(parkable)) {
             throw new IllegalStateException("Vehicle does not exist.");
         }
-        vehicles.remove(number);
+        vehicles.remove(parkable);
         currentAvailable++;
     }
 }
