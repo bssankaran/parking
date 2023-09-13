@@ -4,11 +4,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ParkingLot {
-    private int currentAvailable;
     private final Set<Parkable> vehicles = new HashSet<>();
 
-    public ParkingLot(int totalSpace) {
+    private final NotificationSystem notificationSystem;
+
+    private int currentAvailable;
+
+
+    public ParkingLot(int totalSpace, NotificationSystem notificationSystem) {
         currentAvailable = totalSpace;
+        this.notificationSystem = notificationSystem;
     }
 
     public void park(Parkable parkable) {
@@ -17,6 +22,9 @@ public class ParkingLot {
         }
         vehicles.add(parkable);
         currentAvailable--;
+        if (currentAvailable == 0) {
+            notificationSystem.notifyParkingLotFull();
+        }
     }
 
     public boolean isParked(Parkable parkable) {
