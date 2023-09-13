@@ -1,2 +1,5 @@
-package org.tw.bootcamp;public interface NotificationListener {
+package org.tw.bootcamp;
+
+public interface NotificationListener {
+    void notifyParkingLotFull();
 }
