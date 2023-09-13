@@ -21,4 +21,15 @@ public class ParkingLotTest {
 
         assertFalse(isParked);
     }
+
+    @Test
+    void should_allow_to_park_2_cars_when_space_is_available(){
+        ParkingLot parkingLot = new ParkingLot(2);
+
+        boolean isParked1 = parkingLot.park();
+        boolean isParked2 = parkingLot.park();
+
+        assertTrue(isParked1);
+        assertTrue(isParked2);
+    }
 }
