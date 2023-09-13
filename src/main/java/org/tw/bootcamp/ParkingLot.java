@@ -4,12 +4,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ParkingLot {
-    private final int totalSpace;
     private int currentAvailable;
     private final Set<Parkable> vehicles = new HashSet<>();
 
     public ParkingLot(int totalSpace) {
-        this.totalSpace = totalSpace;
         currentAvailable = totalSpace;
     }
 
