@@ -30,12 +30,12 @@ class ValetTest {
     @BeforeEach
     void init() {
         parkingLots = List.of(parkingLot1, parkingLot2);
+        when(parkingLot1.getNotificationSystem()).thenReturn(notificationSystem1);
+        when(parkingLot2.getNotificationSystem()).thenReturn(notificationSystem2);
     }
 
     @Test
     void should_park_in_first_parking_lot_when_two_parking_lots_are_available() {
-        when(parkingLot1.getNotificationSystem()).thenReturn(notificationSystem1);
-        when(parkingLot2.getNotificationSystem()).thenReturn(notificationSystem2);
 
         Valet valet = new Valet(parkingLots);
 
@@ -46,8 +46,6 @@ class ValetTest {
 
     @Test
     void should_park_in_second_parking_lot_when_first_lot_is_not_available() {
-        when(parkingLot1.getNotificationSystem()).thenReturn(notificationSystem1);
-        when(parkingLot2.getNotificationSystem()).thenReturn(notificationSystem2);
         Valet valet = new Valet(parkingLots);
         ArgumentCaptor<NotificationListener> listenerArgumentCaptor = ArgumentCaptor.forClass(NotificationListener.class);
         Mockito.verify(notificationSystem1).subscribe(listenerArgumentCaptor.capture());

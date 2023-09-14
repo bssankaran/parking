@@ -20,7 +20,7 @@ public class Valet {
     }
 
     private void makeAllAvailable(List<ParkingLot> parkingLots) {
-        parkingLots.forEach(parkingLot -> availabilityMap.put(parkingLot, true));
+        parkingLots.forEach(parkingLot->availabilityMap.put(parkingLot, true));
     }
 
     private void registerListeners(List<ParkingLot> parkingLots) {
