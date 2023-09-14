@@ -6,6 +6,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 
 @ExtendWith(MockitoExtension.class)
@@ -15,6 +16,8 @@ class NotificationSystemTest {
     private NotificationListener listener1;
     @Mock
     private NotificationListener listener2;
+    @Mock
+    private EventType eventType;
 
     @Test
     void should_notify_listener_if_subscribed() {
@@ -22,10 +25,10 @@ class NotificationSystemTest {
         notificationSystem.subscribe(listener1);
         notificationSystem.subscribe(listener2);
 
-        notificationSystem.notifyParkingLotFull();
+        notificationSystem.notify(eventType);
 
-        Mockito.verify(listener1, times(1)).notifyParkingLotFull();
-        Mockito.verify(listener2, times(1)).notifyParkingLotFull();
+        Mockito.verify(listener1, times(1)).notify(eventType);
+        Mockito.verify(listener2, times(1)).notify(eventType);
     }
 
     @Test
@@ -35,9 +38,9 @@ class NotificationSystemTest {
         notificationSystem.subscribe(listener2);
         notificationSystem.unsubscribe(listener1);
 
-        notificationSystem.notifyParkingLotFull();
+        notificationSystem.notify(eventType);
 
-        Mockito.verify(listener1, times(0)).notifyParkingLotFull();
-        Mockito.verify(listener2, times(1)).notifyParkingLotFull();
+        Mockito.verify(listener1, times(0)).notify(any());
+        Mockito.verify(listener2, times(1)).notify(eventType);
     }
 }

@@ -5,11 +5,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.tw.bootcamp.NotificationSystem;
-import org.tw.bootcamp.Parkable;
-import org.tw.bootcamp.ParkingLot;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 
 @ExtendWith(MockitoExtension.class)
@@ -89,7 +87,7 @@ public class ParkingLotTest {
 
         parkingLot.park(parkable1);
 
-        Mockito.verify(notificationSystem, times(1)).notifyParkingLotFull();
+        Mockito.verify(notificationSystem, times(1)).notify(EventType.PARKING_LOT_FULL);
     }
 
     @Test
@@ -100,6 +98,16 @@ public class ParkingLotTest {
             parkingLot.park(Mockito.mock(Parkable.class));
         }
 
-        Mockito.verify(notificationSystem, times(0)).notifyParkingLotFull();
+        Mockito.verify(notificationSystem, times(0)).notify(any());
+    }
+
+    @Test
+    void should_notify_when_parking_lot_becomes_available() {
+        ParkingLot parkingLot = new ParkingLot(1, notificationSystem);
+        parkingLot.park(parkable1);
+
+        parkingLot.leave(parkable1);
+
+        Mockito.verify(notificationSystem, times(1)).notify(EventType.PARKING_LOT_AVAILABLE);
     }
 }

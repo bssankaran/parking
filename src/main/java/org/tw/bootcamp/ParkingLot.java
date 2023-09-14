@@ -23,7 +23,7 @@ public class ParkingLot {
         vehicles.add(parkable);
         currentAvailable--;
         if (currentAvailable == 0) {
-            notificationSystem.notifyParkingLotFull();
+            notificationSystem.notify(EventType.PARKING_LOT_FULL);
         }
     }
 
@@ -36,6 +36,13 @@ public class ParkingLot {
             throw new IllegalStateException("Vehicle does not exist.");
         }
         vehicles.remove(parkable);
+
+        boolean shouldNotify = currentAvailable == 0;
+
         currentAvailable++;
+
+        if (shouldNotify) {
+            notificationSystem.notify(EventType.PARKING_LOT_AVAILABLE);
+        }
     }
 }

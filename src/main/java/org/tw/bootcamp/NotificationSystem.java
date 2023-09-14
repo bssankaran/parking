@@ -5,8 +5,8 @@ import java.util.*;
 public class NotificationSystem {
     private final Set<NotificationListener> listeners = new HashSet<>();
 
-    public void notifyParkingLotFull() {
-        listeners.forEach(NotificationListener::notifyParkingLotFull);
+    public void notify(EventType eventType) {
+        listeners.forEach(listener -> listener.notify(eventType));
     }
 
     public void subscribe(NotificationListener notificationListener) {
