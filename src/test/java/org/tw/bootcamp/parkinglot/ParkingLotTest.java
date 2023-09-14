@@ -1,10 +1,14 @@
-package org.tw.bootcamp;
+package org.tw.bootcamp.parkinglot;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.tw.bootcamp.parkinglot.EventType;
+import org.tw.bootcamp.parkinglot.NotificationSystem;
+import org.tw.bootcamp.parkinglot.Parkable;
+import org.tw.bootcamp.parkinglot.ParkingLot;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;

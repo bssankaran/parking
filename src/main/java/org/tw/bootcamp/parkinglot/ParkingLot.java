@@ -1,4 +1,4 @@
-package org.tw.bootcamp;
+package org.tw.bootcamp.parkinglot;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -44,5 +44,9 @@ public class ParkingLot {
         if (shouldNotify) {
             notificationSystem.notify(EventType.PARKING_LOT_AVAILABLE);
         }
+    }
+
+    public NotificationSystem getNotificationSystem(){
+        return notificationSystem;
     }
 }

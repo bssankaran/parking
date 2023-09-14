@@ -1,4 +1,4 @@
-package org.tw.bootcamp;
+package org.tw.bootcamp.parkinglot;
 
 import java.util.*;
 
