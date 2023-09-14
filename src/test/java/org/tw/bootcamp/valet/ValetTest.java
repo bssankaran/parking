@@ -59,13 +59,14 @@ class ValetTest {
                 arguments3.add(parkable);
             }
         };
-        ParkingLot parkingLot4 = new ParkingLot(1, null) {
+        ParkingLot parkingLot4 = new ParkingLot(1, new NotificationSystem()) {
             @Override
             public void park(Parkable parkable) {
                 arguments4.add(parkable);
             }
         };
         parkingLotList.add(parkingLot3);
+        parkingLotList.add(parkingLot4);
         Valet valet = new Valet(parkingLotList);
 
         valet.park(parkable3);
